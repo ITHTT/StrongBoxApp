@@ -11,18 +11,15 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.google.zxing.BarcodeFormat;
 import com.htt.strongboxapp.R;
-import com.htt.strongboxapp.views.zxing.camera.CameraManager;
-import com.htt.strongboxapp.views.zxing.decoding.CaptureActivityHandler;
-import com.htt.strongboxapp.views.zxing.decoding.InactivityTimer;
-import com.htt.strongboxapp.views.zxing.view.ViewfinderView;
+import com.htt.strongboxapp.views.widgets.zxing.camera.CameraManager;
+import com.htt.strongboxapp.views.widgets.zxing.decoding.CaptureActivityHandler;
+import com.htt.strongboxapp.views.widgets.zxing.decoding.InactivityTimer;
+import com.htt.strongboxapp.views.widgets.zxing.view.ViewfinderView;
 
 import java.io.IOException;
 import java.util.Vector;

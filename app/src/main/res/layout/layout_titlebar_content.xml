@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingLeft="10dp">
+        <TextView
+            android:id="@+id/tv_titlebar_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/colorWhite"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/icon_back"/>
+        <com.htt.strongboxapp.views.widgets.roundview.RoundTextView
+            android:id="@+id/tv_titlebar_msg_tip"
+            android:layout_toRightOf="@+id/tv_titlebar_back"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="11.5sp"
+            android:visibility="visible"
+            app:rv_backgroundColor="#FD481F"
+            app:rv_isRadiusHalfHeight="true"
+            app:rv_strokeColor="#ffffff"
+            app:rv_strokeWidth="1dp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_titlebar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:layout_centerInParent="true"
+        android:text="@string/app_name"/>
+</merge>

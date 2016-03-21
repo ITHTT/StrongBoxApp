@@ -44,6 +44,11 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
     }
 
+    @Override
+    protected void initViews() {
+
+    }
+
     public void register(View view){
         Intent intent=new Intent(this,RegisterActivity.class);
         startActivity(intent);

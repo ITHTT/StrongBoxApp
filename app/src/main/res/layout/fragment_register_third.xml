@@ -14,29 +14,33 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp">
             <EditText
-                android:id="@+id/et_user_account"
+                android:id="@+id/et_user_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:hint="身份证号码"
+                android:hint="密码(由8~16数字或字母组成,区分大小写)"
+                android:inputType="numberSigned"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+            <EditText
+                android:id="@+id/et_user_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:hint="确认密码"
                 android:inputType="numberSigned"/>
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/bt_first_step"
+            android:id="@+id/bt_next_step"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:textSize="14sp"
-            android:text="下一步"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:lineSpacingExtra="1.5dp"
-            android:textSize="12sp"
-            android:text="身份证号将作为用户唯一识别标志"/>
+            android:text="注册"/>
     </LinearLayout>
 </ScrollView>

@@ -24,6 +24,7 @@ abstract public class BaseActivity extends AppCompatActivity{
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setStatusBarColor(R.color.colorPrimary);
         setContentView();
+        initViews();
     }
 
     protected void setTranslucentStyle(){
@@ -58,5 +59,7 @@ abstract public class BaseActivity extends AppCompatActivity{
     }
 
     abstract protected void setContentView();
+
+    abstract protected void initViews();
 
 }

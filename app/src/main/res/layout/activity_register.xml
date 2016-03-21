@@ -10,8 +10,5 @@
         android:id="@+id/layout_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.htt.strongboxapp.views.widgets.keyboardview.KeyboardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
     </FrameLayout>
 </LinearLayout>

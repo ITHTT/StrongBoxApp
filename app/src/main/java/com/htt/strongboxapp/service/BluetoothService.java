@@ -11,16 +11,20 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import java.util.List;
+
 /**
  * Created by HTT on 2016/3/21.
  */
 public class BluetoothService extends Service {
     private final String TAG=this.getClass().getSimpleName();
+    private BluetoothAdapter bluetoothAdapter;
+    private List<BluetoothDevice> bluetoothDevices;
 
     // 创建一个接收ACTION_FOUND广播的BroadcastReceiver
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
-            Log.d(TAG,"响应蓝牙搜索广播...");
+            //Log.d(TAG,"响应蓝牙搜索广播...");
             String action = intent.getAction();
             if(BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
                 Log.d(TAG,"开始搜索蓝牙设备");
@@ -29,6 +33,7 @@ public class BluetoothService extends Service {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // 将设备名称和地址放入array adapter，以便在ListView中显示
                 Log.d(TAG, "找到设备:" + device.getName() + ":" + device.getAddress());
+                //device.createRfcommSocketToServiceRecord(device.getUuids()[0]);
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED
                     .equals(action)) {
                     Log.d(TAG, "搜索结束...");
@@ -47,25 +52,30 @@ public class BluetoothService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.d(TAG, "注册蓝牙搜索广播接收者...");
-        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-//        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
-//        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-        registerReceiver(mReceiver, filter);
+        IntentFilter actionFoundFilter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        actionFoundFilter.setPriority(Integer.MAX_VALUE);
+        registerReceiver(mReceiver, actionFoundFilter);
+
+        IntentFilter actionDiscoveryStartedFilter=new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+        registerReceiver(mReceiver,actionDiscoveryStartedFilter);
+
+        IntentFilter actionDiscoveryFinishedFilter=new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        registerReceiver(mReceiver,actionDiscoveryFinishedFilter);
+
+        bluetoothAdapter.getRemoteDevice("");
     }
-
-
 
     @Override
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
         Log.d(TAG,"开启蓝牙搜索...");
         BluetoothAdapter mAdapter= BluetoothAdapter.getDefaultAdapter();
-        if(!mAdapter.isEnabled()){
+        while(!mAdapter.isEnabled()){
             Log.d(TAG,"蓝牙不可用...");
             mAdapter.enable();
-        }else{
-            Log.d(TAG,"蓝牙可用...");
+            mAdapter= BluetoothAdapter.getDefaultAdapter();
         }
+            //Log.d(TAG,"蓝牙可用...");
         mAdapter.startDiscovery();
     }
 

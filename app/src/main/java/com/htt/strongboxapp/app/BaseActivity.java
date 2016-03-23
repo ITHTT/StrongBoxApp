@@ -8,12 +8,14 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.htt.strongboxapp.R;
+import com.htt.strongboxapp.networks.HttpClientUtil;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 /**
  * Created by Administrator on 2016/3/21.
  */
 abstract public class BaseActivity extends AppCompatActivity{
+    protected final String Tag=this.getClass().getSimpleName();
     /**沉浸式状态栏管理工具*/
     private SystemBarTintManager systemBarTintManager;
 
@@ -62,4 +64,10 @@ abstract public class BaseActivity extends AppCompatActivity{
 
     abstract protected void initViews();
 
+    @Override
+    protected void onDestroy() {
+        HttpClientUtil.getHttpClientUtil().cancelTag(Tag);
+        super.onDestroy();
+
+    }
 }

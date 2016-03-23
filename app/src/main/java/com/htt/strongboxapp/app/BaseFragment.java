@@ -7,11 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.htt.strongboxapp.networks.HttpClientUtil;
+
 /**
  * Created by HTT on 2016/3/21.
  */
 abstract public class BaseFragment extends Fragment implements View.OnClickListener{
-
+    protected final String Tag=this.getClass().getSimpleName();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -23,4 +25,10 @@ abstract public class BaseFragment extends Fragment implements View.OnClickListe
     abstract protected View inflaterContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
 
     abstract protected void initViews(View view);
+
+    @Override
+    public void onDestroy() {
+        HttpClientUtil.getHttpClientUtil().cancelTag(Tag);
+        super.onDestroy();
+    }
 }

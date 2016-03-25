@@ -1,9 +1,8 @@
 package com.htt.strongboxapp.networks.cookie;
 
+import com.htt.strongboxapp.networks.cookie.store.CookieStore;
+import com.htt.strongboxapp.networks.cookie.store.HasCookieStore;
 import com.htt.strongboxapp.networks.cookie.store.PersistentCookieStore;
-import com.zhy.http.okhttp.cookie.store.CookieStore;
-import com.zhy.http.okhttp.cookie.store.HasCookieStore;
-import com.zhy.http.okhttp.utils.Exceptions;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class CookieJarImpl implements CookieJar, HasCookieStore
 
     public CookieJarImpl(PersistentCookieStore cookieStore)
     {
-        if (cookieStore == null) Exceptions.illegalArgument("cookieStore can not be null.");
+        if (cookieStore == null) throw new RuntimeException("cookieStore can not be null.");
         this.cookieStore = cookieStore;
     }
 

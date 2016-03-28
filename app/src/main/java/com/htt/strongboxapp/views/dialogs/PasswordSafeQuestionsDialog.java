@@ -1,42 +1,69 @@
 package com.htt.strongboxapp.views.dialogs;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.htt.strongboxapp.R;
 
-import me.drakeet.materialdialog.MaterialDialog;
 
 /**
  * Created by Administrator on 2016/3/28.
  */
 public class PasswordSafeQuestionsDialog {
-    private MaterialDialog dialog;
     private ListView lvQuestions;
     private String[] questions;
+    private AlertDialog mAlertDialog;
+    private Window mAlertDialogWindow;
+    private Context context;
 
     public PasswordSafeQuestionsDialog(Context context){
-        dialog=new MaterialDialog(context);
-        View view=LayoutInflater.from(context).inflate(R.layout.dialog_password_safe_questions,null);
-        lvQuestions= (ListView) view.findViewById(R.id.lv_questions);
+        this.context=context;
+        mAlertDialog=new AlertDialog.Builder(context).create();
+        mAlertDialog.show();
+        mAlertDialog.getWindow()
+                .clearFlags(
+                        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
+                                WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        mAlertDialog.getWindow()
+                .setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_MASK_STATE);
+
+        mAlertDialogWindow = mAlertDialog.getWindow();
+
+        View contentView = LayoutInflater.from(context)
+                .inflate(
+                        R.layout.dialog_password_safe_questions,
+                        null);
+        contentView.setFocusable(true);
+        contentView.setFocusableInTouchMode(true);
+
+        mAlertDialogWindow.setBackgroundDrawableResource(
+                R.drawable.dialog_window_background);
+
+        mAlertDialog.setContentView(contentView);
+
+        lvQuestions= (ListView) contentView.findViewById(R.id.lv_questions);
         questions=context.getResources().getStringArray(R.array.passowrd_safe_question);
         PasswordSafeQuestionsAdapter adapter=new PasswordSafeQuestionsAdapter(questions);
         lvQuestions.setAdapter(adapter);
-        dialog.setContentView(view);
-        dialog.setCanceledOnTouchOutside(true);
     }
 
     public void show(){
-        dialog.show();
+        if(!mAlertDialog.isShowing()){
+            mAlertDialog.show();
+        }
     }
 
     public void dismisss(){
-        dialog.dismiss();
+        mAlertDialog.dismiss();
     }
 
     public static final class PasswordSafeQuestionsAdapter extends BaseAdapter{

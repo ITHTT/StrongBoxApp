@@ -17,6 +17,6 @@ public class StrongBoxApplication extends Application {
         AppConfigInfo.initAppConfigInfo(this);
         AppExceptionHandler.getInstance().init(this);
         HttpClientUtil.initHttpClientUtil(this,AppConfigInfo.APP_HTTP_CACHE_PATH);
-        BluetoothService.startBluetoothService(this);
+        //BluetoothService.startBluetoothService(this);
     }
 }

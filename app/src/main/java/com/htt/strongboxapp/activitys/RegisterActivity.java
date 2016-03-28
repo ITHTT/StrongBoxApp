@@ -22,7 +22,7 @@ public class RegisterActivity extends BaseActivity{
 
     @Override
     protected void initViews() {
-        setTitle("用户注册");
+        setTitle("设置密码");
         etUserPassword=(EditText)this.findViewById(R.id.et_user_password);
         etUserConfirmPassword=(EditText)this.findViewById(R.id.et_user_confirm_password);
     }

@@ -20,12 +20,12 @@ public class PhoneCheckRegisterActivity extends BaseActivity{
 
     @Override
     protected void setContentView() {
-        setTitle("手机验证");
         setContentView(R.layout.activity_register_phone_check);
     }
 
     @Override
     protected void initViews() {
+        setTitle("手机验证");
         etUserName=(EditText)this.findViewById(R.id.et_user_name);
         etUserPhone=(EditText)this.findViewById(R.id.et_user_phone);
         etUserVCode=(EditText)this.findViewById(R.id.et_user_vcode);

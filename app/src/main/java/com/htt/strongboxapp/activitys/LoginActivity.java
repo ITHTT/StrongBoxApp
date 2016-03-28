@@ -46,11 +46,17 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
+        setTitle("用户登录");
+        setTitleBarLeftVisibility(View.GONE);
+    }
+
+    @Override
+    protected void onClickView(View v) {
 
     }
 
     public void register(View view){
-        Intent intent=new Intent(this,RegisterActivity.class);
+        Intent intent=new Intent(this,IDCardCheckRegisterActivity.class);
         startActivity(intent);
     }
 }

@@ -62,7 +62,7 @@ public class BluetoothService extends Service {
         IntentFilter actionDiscoveryFinishedFilter=new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         registerReceiver(mReceiver,actionDiscoveryFinishedFilter);
 
-        bluetoothAdapter.getRemoteDevice("");
+        //bluetoothAdapter.getRemoteDevice("");
     }
 
     @Override

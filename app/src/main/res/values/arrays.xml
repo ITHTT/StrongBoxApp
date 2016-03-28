@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="passowrd_safe_question">
+        <item>您最喜欢的宠物是?</item>
+        <item>您最喜欢玩的电子游戏是?</item>
+        <item>您的学号是？</item>
+        <item>您的生日是?</item>
+        <item>您母亲的生日是?</item>
+        <item>您父亲的生日是?</item>
+        <item>您最好的朋友的姓名是?</item>
+        <item>您配偶的姓名是?</item>
+        <item>您初中班主任的姓名是?</item>
+        <item>您最喜欢的电影是?</item>
+    </string-array>
+</resources>

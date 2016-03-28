@@ -4,20 +4,24 @@ import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.htt.strongboxapp.R;
 import com.htt.strongboxapp.networks.HttpClientUtil;
+import com.htt.strongboxapp.views.TitleBar;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 /**
  * Created by Administrator on 2016/3/21.
  */
-abstract public class BaseActivity extends AppCompatActivity{
+abstract public class BaseActivity extends AppCompatActivity implements View.OnClickListener{
     protected final String Tag=this.getClass().getSimpleName();
     /**沉浸式状态栏管理工具*/
     private SystemBarTintManager systemBarTintManager;
+    protected TitleBar titleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,10 @@ abstract public class BaseActivity extends AppCompatActivity{
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setStatusBarColor(R.color.colorPrimary);
         setContentView();
+        titleBar= (TitleBar) this.findViewById(R.id.layout_title_bar);
+        if(titleBar!=null){
+            titleBar.setTitleBarLeftOnClickListener(this);
+        }
         initViews();
     }
 
@@ -60,9 +68,39 @@ abstract public class BaseActivity extends AppCompatActivity{
         }
     }
 
+    public void setTitle(String title){
+        if(!TextUtils.isEmpty(title)){
+            if(titleBar!=null){
+                titleBar.setTitle(title);
+            }
+        }
+    }
+
+    public void setTitleBarLeftVisibility(int visibility){
+        if(titleBar!=null){
+            titleBar.setTitleBarLeftVisibility(visibility);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.layout_title_bar_left:
+                onClickTitleBarLeft();
+                break;
+        }
+        onClickView(v);
+    }
+
+    protected void onClickTitleBarLeft(){
+        this.finish();
+    }
+
     abstract protected void setContentView();
 
     abstract protected void initViews();
+
+    abstract protected void onClickView(View v);
 
     @Override
     protected void onDestroy() {

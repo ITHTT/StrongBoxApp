@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.htt.strongboxapp" >
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".app.StrongBoxApplication"
@@ -15,7 +17,6 @@
         <activity android:name=".activitys.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -24,7 +25,14 @@
             android:label="@string/title_activity_login" >
         </activity>
 
-        <activity android:name=".activitys.RegisterActivity"/>
+        <activity android:name=".activitys.IDCardCheckRegisterActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
+        <activity android:name=".activitys.PhoneCheckRegisterActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
+        <activity android:name=".activitys.RegisterActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
 
         <service android:name=".service.BluetoothService"/>
     </application>

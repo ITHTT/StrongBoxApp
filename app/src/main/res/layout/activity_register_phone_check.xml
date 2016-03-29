@@ -60,6 +60,7 @@
                         android:gravity="center"/>
                 </android.support.design.widget.TextInputLayout>
                 <Button
+                    android:id="@+id/bt_get_vcode"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

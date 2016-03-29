@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StrongBoxApp</string>
+    <string name="app_name">智能保险箱</string>
 
     <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
     <string name="title_activity_login">Sign in</string>

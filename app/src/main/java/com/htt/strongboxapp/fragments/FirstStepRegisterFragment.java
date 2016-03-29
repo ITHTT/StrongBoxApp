@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.htt.strongboxapp.R;
-import com.htt.strongboxapp.activitys.RegisterActivity;
+import com.htt.strongboxapp.activitys.PasswordSettingRegisterActivity;
 import com.htt.strongboxapp.app.BaseFragment;
 import com.htt.strongboxapp.networks.HttpClientUtil;
 import com.htt.strongboxapp.networks.HttpUrls;
@@ -81,7 +81,7 @@ public class FirstStepRegisterFragment extends BaseFragment{
             public void onSuccess(Call call, String response) {
                 ToastMsgUtil.toastMsg(getActivity(),"验证成功");
                 KLog.json(Tag, response);
-                RegisterActivity activity= (RegisterActivity) getActivity();
+                PasswordSettingRegisterActivity activity= (PasswordSettingRegisterActivity) getActivity();
             }
 
             @Override

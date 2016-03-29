@@ -35,6 +35,8 @@ import java.util.List;
 
 import com.htt.strongboxapp.R;
 import com.htt.strongboxapp.app.BaseActivity;
+import com.htt.strongboxapp.utils.ActivitySkipUtils;
+import com.htt.strongboxapp.utils.CommonUtils;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -46,6 +48,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
+        CommonUtils.setStatusBarDarkMode(true,this);
         setTitle("用户登录");
         setTitleBarLeftVisibility(View.GONE);
     }
@@ -53,6 +56,10 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onClickView(View v) {
 
+    }
+
+    public void login(View view){
+        ActivitySkipUtils.skipActivity(this,MainActivity.class);
     }
 
     public void register(View view){

@@ -41,7 +41,7 @@ public class PhoneCheckRegisterActivity extends BaseActivity{
     }
 
     public void phoneCheck(View view){
-        ActivitySkipUtils.skipActivity(this,RegisterActivity.class);
+        ActivitySkipUtils.skipActivity(this,PasswordSettingRegisterActivity.class);
     }
 
     @Override

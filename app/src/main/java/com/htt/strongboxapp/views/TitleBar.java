@@ -75,4 +75,10 @@ public class TitleBar extends RelativeLayout{
             layoutTitleBarLeft.setVisibility(visibility);
         }
     }
+
+    public void setTitleBarLeftIcon(int res){
+        if(tvTitleBarBack!=null){
+            tvTitleBarBack.setBackgroundResource(res);
+        }
+    }
 }

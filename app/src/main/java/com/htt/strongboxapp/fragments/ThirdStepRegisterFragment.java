@@ -17,7 +17,7 @@ public class ThirdStepRegisterFragment extends BaseFragment{
     private EditText etUserConfirmPassword;
     @Override
     protected View inflaterContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_register,container,false);
+        return inflater.inflate(R.layout.activity_register_password_setting,container,false);
     }
 
     @Override

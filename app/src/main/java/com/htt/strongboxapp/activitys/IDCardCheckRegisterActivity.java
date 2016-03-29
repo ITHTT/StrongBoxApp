@@ -49,7 +49,7 @@ public class IDCardCheckRegisterActivity extends BaseActivity{
 //            ToastMsgUtil.toastMsg(this.getActivity(),"请输入合法的身份证号码");
 //            return;
 //        }
-        //SoftInputUtil.hideSoftInputFromWindow(this, etUserAccount);
+        SoftInputUtil.hideSoftInputFromWindow(this, etUserAccount);
         checkCardId(cardId);
     }
 

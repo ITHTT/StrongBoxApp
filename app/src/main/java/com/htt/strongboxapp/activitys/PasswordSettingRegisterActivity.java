@@ -1,23 +1,31 @@
 package com.htt.strongboxapp.activitys;
 
-import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.htt.strongboxapp.R;
 import com.htt.strongboxapp.app.BaseActivity;
+import com.htt.strongboxapp.utils.SoftInputUtil;
 import com.htt.strongboxapp.views.dialogs.PasswordSafeQuestionsDialog;
 
 /**
  * Created by Administrator on 2016/3/21.
  */
-public class RegisterActivity extends BaseActivity{
+public class PasswordSettingRegisterActivity extends BaseActivity implements PasswordSafeQuestionsDialog.OnSelecteQuestionListener{
     private EditText etUserPassword;
     private EditText etUserConfirmPassword;
+    private EditText etSafeQuestion01;
+    private EditText etSafeQuestion02;
+    private EditText etSafeQuestion03;
+
+    private PasswordSafeQuestionsDialog passwordSafeQuestionsDialog;
+    private int currentSelectedId;
 
     @Override
     protected void setContentView() {
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_register_password_setting);
     }
 
     @Override
@@ -25,11 +33,24 @@ public class RegisterActivity extends BaseActivity{
         setTitle("设置密码");
         etUserPassword=(EditText)this.findViewById(R.id.et_user_password);
         etUserConfirmPassword=(EditText)this.findViewById(R.id.et_user_confirm_password);
+
+        etSafeQuestion01=(EditText)this.findViewById(R.id.et__password_safe_question_01);
+        etSafeQuestion02=(EditText)this.findViewById(R.id.et__password_safe_question_02);
+        etSafeQuestion03=(EditText)this.findViewById(R.id.et__password_safe_question_03);
     }
 
     public void selectQuestion(View view){
-        PasswordSafeQuestionsDialog dialog=new PasswordSafeQuestionsDialog(this);
-        dialog.show();
+        SoftInputUtil.hideSoftInputFromWindow(this,etUserConfirmPassword);
+        currentSelectedId=view.getId();
+        if(passwordSafeQuestionsDialog==null){
+            passwordSafeQuestionsDialog=new PasswordSafeQuestionsDialog(this);
+            passwordSafeQuestionsDialog.setOnSelecteQuestionListener(this);
+        }
+        if(view instanceof TextView) {
+            String currentSelectedQuestion = ((TextView) view).getText().toString();
+            passwordSafeQuestionsDialog.setCurrentSelectedQuestion(currentSelectedQuestion);
+        }
+        passwordSafeQuestionsDialog.show();
     }
 
     @Override
@@ -39,7 +60,32 @@ public class RegisterActivity extends BaseActivity{
 
     @Override
     protected void onClickTitleBarLeft() {
+        super.onClickTitleBarLeft();
+    }
 
+    @Override
+    public void onSelectedQuestion(String question) {
+        if(!TextUtils.isEmpty(question)){
+           TextView tv= (TextView) this.findViewById(currentSelectedId);
+            tv.setText(question);
+            setCurrentQuestionView(currentSelectedId);
+        }
+    }
+
+    private void setCurrentQuestionView(int id){
+        if(id==R.id.tv_question_01){
+            etSafeQuestion01.setVisibility(View.VISIBLE);
+            this.findViewById(R.id.line1).setVisibility(View.VISIBLE);
+            etSafeQuestion01.requestFocus();
+        }else if(id==R.id.tv_question_02){
+            etSafeQuestion02.setVisibility(View.VISIBLE);
+            etSafeQuestion02.requestFocus();
+            this.findViewById(R.id.line2).setVisibility(View.VISIBLE);
+        }else if(id==R.id.tv_question_03){
+            etSafeQuestion03.setVisibility(View.VISIBLE);
+            etSafeQuestion03.requestFocus();
+            this.findViewById(R.id.line3).setVisibility(View.VISIBLE);
+        }
     }
 
 //    /**

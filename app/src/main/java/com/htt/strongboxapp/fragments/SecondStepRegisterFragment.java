@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.htt.strongboxapp.R;
-import com.htt.strongboxapp.activitys.RegisterActivity;
+import com.htt.strongboxapp.activitys.PasswordSettingRegisterActivity;
 import com.htt.strongboxapp.app.BaseFragment;
 
 /**
@@ -40,7 +40,7 @@ public class SecondStepRegisterFragment extends BaseFragment{
     }
 
     private void secondStepRegister(){
-        RegisterActivity activity= (RegisterActivity) this.getActivity();
+        PasswordSettingRegisterActivity activity= (PasswordSettingRegisterActivity) this.getActivity();
         //activity.setCurrentRegisterFragment(2);
     }
 

@@ -397,13 +397,4 @@ public class HttpClientUtil {
     public interface ProgressResponseCallBack extends StringResponseCallBack{
         void loadingProgress(int progress);
     }
-
-
-
-
-
-
-
-
-
 }

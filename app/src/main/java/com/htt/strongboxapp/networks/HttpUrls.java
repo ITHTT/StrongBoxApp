@@ -8,5 +8,9 @@ public class HttpUrls {
 
     public static final String CHECK_USER_CARDID_URL=HOST_URL+"user-checkCardId.action";
 
+    public static final String USER_REGISTER_URL=HOST_URL+"user-register.action";
+
+    public static final String USER_LOGIN_URL=HOST_URL+"user-login.action";
+
 
 }

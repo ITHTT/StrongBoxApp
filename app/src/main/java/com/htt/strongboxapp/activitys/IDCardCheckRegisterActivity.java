@@ -1,6 +1,7 @@
 package com.htt.strongboxapp.activitys;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -71,14 +72,16 @@ public class IDCardCheckRegisterActivity extends BaseActivity{
                 if (error != null) {
                     KLog.e("error:" + error.getMessage());
                 }
-                ToastMsgUtil.toastMsg(IDCardCheckRegisterActivity.this, "验证失败");
+                ToastMsgUtil.toastMsg(IDCardCheckRegisterActivity.this, "请求失败");
             }
 
             @Override
             public void onSuccess(Call call, String response) {
                 ToastMsgUtil.toastMsg(IDCardCheckRegisterActivity.this, "验证成功");
                 KLog.json(Tag, response);
-                ActivitySkipUtils.skipActivityForResult(IDCardCheckRegisterActivity.this, PhoneCheckRegisterActivity.class, cardId, 0x0001);
+                Intent intent = new Intent(IDCardCheckRegisterActivity.this, PhoneCheckRegisterActivity.class);
+                intent.putExtra("userIDCard", cardId);
+                IDCardCheckRegisterActivity.this.startActivityForResult(intent, 0x0001);
             }
 
             @Override
@@ -98,5 +101,14 @@ public class IDCardCheckRegisterActivity extends BaseActivity{
     @Override
     protected void onClickView(View v) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            setResult(RESULT_OK);
+            finish();
+        }
     }
 }

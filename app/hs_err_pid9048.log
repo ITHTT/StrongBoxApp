@@ -1,0 +1,671 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x000000006492e0af, pid=9048, tid=8884
+#
+# JRE version: Java(TM) SE Runtime Environment (7.0_55-b13) (build 1.7.0_55-b13)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.55-b03 mixed mode windows-amd64 compressed oops)
+# Problematic frame:
+# V  [jvm.dll+0xee0af]
+#
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000023b3000):  GCTaskThread [stack: 0x0000000006090000,0x0000000006190000] [id=8884]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0xffffffffffffffff
+
+Registers:
+RAX=0x0000000006190000, RBX=0x000000006ed00000, RCX=0x0000000000000000, RDX=0x007fffffffd9f800
+RSP=0x000000000618f4c0, RBP=0x00000000c0b1c138, RSI=0x00000000087851b0, RDI=0x00000000087851b0
+R8 =0x0000000000000000, R9 =0x0000000000000000, R10=0x0000000000000000, R11=0x000000000000000c
+R12=0x00000000c0b1c140, R13=0x00000000bb27c9f0, R14=0x00000000bb27c9f8, R15=0x00000000c0b1c128
+RIP=0x000000006492e0af, EFLAGS=0x0000000000010246
+
+Top of Stack: (sp=0x000000000618f4c0)
+0x000000000618f4c0:   00000000bb27c770 00000000c0b1c118
+0x000000000618f4d0:   0000000000000003 0000000064a138e2
+0x000000000618f4e0:   0000000000000000 00000000023b38a0
+0x000000000618f4f0:   00000000023ada00 0000012200000000
+0x000000000618f500:   000000000000005a 0000000064bd29cc
+0x000000000618f510:   0000000008fc0310 00000000c0b1c128
+0x000000000618f520:   00000000087851b0 0000000064dfe610
+0x000000000618f530:   0000012200000000 0000000000000006
+0x000000000618f540:   00000000f2814958 0000000000003e00
+0x000000000618f550:   0000000008fc01e0 0000000000000000
+0x000000000618f560:   0000000000000000 00000000023ada00
+0x000000000618f570:   00000000023b38b0 00000000023b38a0
+0x000000000618f580:   0000000064dfe610 00000000087851b0
+0x000000000618f590:   0000000000000000 0000000000000000
+0x000000000618f5a0:   00000000086c5540 0000000064bcfd7c
+0x000000000618f5b0:   0000012100000000 0000012200000000 
+
+Instructions: (pc=0x000000006492e0af)
+0x000000006492e08f:   15 bc 5a 66 00 48 c1 ea 03 48 d3 ea 0f b6 c2 48
+0x000000006492e09f:   c1 ea 06 24 3f 44 0f b6 c0 48 8b 05 d1 5a 66 00
+0x000000006492e0af:   48 8b 14 d0 4c 0f a3 c2 0f 82 55 01 00 00 80 3d
+0x000000006492e0bf:   74 cb 65 00 00 74 0e 8b 43 08 41 8b c9 48 d3 e0 
+
+
+Register to memory mapping:
+
+RAX=0x0000000006190000 is an unknown value
+RBX=0x000000006ed00000 is an unknown value
+RCX=0x0000000000000000 is an unknown value
+RDX=0x007fffffffd9f800 is an unknown value
+RSP=0x000000000618f4c0 is an unknown value
+RBP=0x00000000c0b1c138 is pointing into object: 0x00000000c0b1c128
+com.android.dx.rop.code.RegisterSpec 
+ - klass: 'com/android/dx/rop/code/RegisterSpec'
+RSI=0x00000000087851b0 is an unknown value
+RDI=0x00000000087851b0 is an unknown value
+R8 =0x0000000000000000 is an unknown value
+R9 =0x0000000000000000 is an unknown value
+R10=0x0000000000000000 is an unknown value
+R11=0x000000000000000c is an unknown value
+R12=0x00000000c0b1c140 is an oop
+com.android.dx.rop.code.LocalItem 
+ - klass: 'com/android/dx/rop/code/LocalItem'
+R13=0x00000000bb27c9f0 is pointing into object: 0x00000000bb27c760
+{instance class} 
+ - klass: {other class}
+R14=0x00000000bb27c9f8 is an oop
+{constant pool cache} 
+ - klass: {other class}
+                 -------------
+  0  (0x00000000bb27ca18)  [00|b8|    1]
+                 [   0x00000000bb27aa30]
+                 [   0x0000000000000000]
+                 [   0x0000000030400003]
+                 -------------
+  1  (0x00000000bb27ca38)  [00|b7|    2]
+                 [   0x00000000bb27a6a0]
+                 [   0x0000000000000000]
+                 [   0x0000000000400004]
+                 -------------
+  2  (0x00000000bb27ca58)  [00|b7|    3]
+                 [   0x00000000bb27a1a8]
+                 [   0x0000000000000000]
+                 [   0xffffffff80400004]
+                 -------------
+  3  (0x00000000bb27ca78)  [00|b2|    4]
+                 [   0x00000000c1627308]
+                 [   0x0000000000000074]
+                 [   0x0000000074400001]
+                 -------------
+  4  (0x00000000bb27ca98)  [00|b2|    5]
+                 [   0x00000000c1627308]
+                 [   0x0000000000000078]
+                 [   0x0000000074400002]
+                 -------------
+  5  (0x00000000bb27cab8)  [b6|00|    6]
+                 [   0x0000000000000000]
+                 [   0x0000000000000005]
+                 [   0xffffffff80000004]
+                 -------------
+  6  (0x00000000bb27cad8)  [b6|00|    7]
+                 [   0x0000000000000000]
+                 [   0x0000000000000006]
+                 [   0x0000000070000002]
+                 -------------
+  7  (0x00000000bb27caf8)  [b6|00|    9]
+                 [   0x0000000000000000]
+                 [   0x0000000000000006]
+                 [   0x0000000070000001]
+                 -------------
+  8  (0x00000000bb27cb18)  [b6|00|   10]
+                 [   0x0000000000000000]
+                 [   0x0000000000000007]
+                 [   0x0000000070000003]
+                 -------------
+  9  (0x00000000bb27cb38)  [00|b8|   11]
+                 [   0x00000000bb279c68]
+                 [   0x0000000000000000]
+                 [   0x0000000070400003]
+                 -------------
+ 10  (0x00000000bb27cb58)  [00|00|   14]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 11  (0x00000000bb27cb78)  [00|00|   16]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 12  (0x00000000bb27cb98)  [00|00|   18]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 13  (0x00000000bb27cbb8)  [00|00|   19]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 14  (0x00000000bb27cbd8)  [00|00|   20]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 15  (0x00000000bb27cbf8)  [00|b7|   21]
+                 [   0x00000000bae01fe8]
+                 [   0x0000000000000000]
+                 [   0xffffffff80000001]
+                 -------------
+ 16  (0x00000000bb27cc18)  [00|00|   24]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 17  (0x00000000bb27cc38)  [b5|b4|   26]
+                 [   0x00000000c1627308]
+                 [   0x000000000000000c]
+                 [   0x0000000034400003]
+                 -------------
+ 18  (0x00000000bb27cc58)  [b5|b4|   27]
+                 [   0x00000000c1627308]
+                 [   0x0000000000000010]
+                 [   0x0000000074400004]
+                 -------------
+ 19  (0x00000000bb27cc78)  [b5|b4|   28]
+                 [   0x00000000c1627308]
+                 [   0x0000000000000014]
+                 [   0x0000000074400005]
+                 -------------
+ 20  (0x00000000bb27cc98)  [00|00|   30]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 21  (0x00000000bb27ccb8)  [00|00|   31]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 22  (0x00000000bb27ccd8)  [00|00|   32]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 23  (0x00000000bb27ccf8)  [00|00|   33]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 24  (0x00000000bb27cd18)  [00|b9|   34]
+                 [   0x00000000bb0d1bc0]
+                 [   0x0000000000000000]
+                 [   0x0000000070000001]
+                 -------------
+ 25  (0x00000000bb27cd38)  [00|00|   35]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 26  (0x00000000bb27cd58)  [b6|00|   36]
+                 [   0x0000000000000000]
+                 [   0x0000000000000001]
+                 [   0x0000000000000002]
+                 -------------
+ 27  (0x00000000bb27cd78)  [b6|00|   37]
+                 [   0x0000000000000000]
+                 [   0x0000000000000001]
+                 [   0x0000000000000002]
+                 -------------
+ 28  (0x00000000bb27cd98)  [00|00|   38]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 29  (0x00000000bb27cdb8)  [00|00|   39]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 30  (0x00000000bb27cdd8)  [b6|00|   40]
+                 [   0x0000000000000000]
+                 [   0x0000000000000003]
+                 [   0x0000000030000001]
+                 -------------
+ 31  (0x00000000bb27cdf8)  [b6|00|   41]
+                 [   0x0000000000000000]
+                 [   0x0000000000000003]
+                 [   0x0000000030000001]
+                 -------------
+ 32  (0x00000000bb27ce18)  [00|00|   42]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 33  (0x00000000bb27ce38)  [00|b9|   43]
+                 [   0x00000000bb0d1bc0]
+                 [   0x0000000000000003]
+                 [   0x0000000070000001]
+                 -------------
+ 34  (0x00000000bb27ce58)  [00|b9|   44]
+                 [   0x00000000bb0d1bc0]
+                 [   0x0000000000000001]
+                 [   0x0000000030000001]
+                 -------------
+ 35  (0x00000000bb27ce78)  [00|b9|   45]
+                 [   0x00000000bb0d1bc0]
+                 [   0x0000000000000004]
+                 [   0x0000000030000001]
+                 -------------
+ 36  (0x00000000bb27ce98)  [b6|00|   46]
+                 [   0x0000000000000000]
+                 [   0x00000000bb27b490]
+                 [   0x0000000030500001]
+                 -------------
+ 37  (0x00000000bb27ceb8)  [b6|00|   47]
+                 [   0x0000000000000000]
+                 [   0x00000000bb1bd568]
+                 [   0x0000000030500001]
+                 -------------
+ 38  (0x00000000bb27ced8)  [00|00|   48]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 39  (0x00000000bb27cef8)  [00|00|   49]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 40  (0x00000000bb27cf18)  [00|00|   50]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 41  (0x00000000bb27cf38)  [b6|00|   51]
+                 [   0x0000000000000000]
+                 [   0x00000000bb27b120]
+                 [   0x0000000030500001]
+                 -------------
+ 42  (0x00000000bb27cf58)  [b6|00|   52]
+                 [   0x0000000000000000]
+                 [   0x00000000bb27b2d0]
+                 [   0x0000000070500001]
+                 -------------
+ 43  (0x00000000bb27cf78)  [b6|00|   53]
+                 [   0x0000000000000000]
+                 [   0x00000000bb27acd0]
+                 [   0x0000000070500001]
+                 -------------
+ 44  (0x00000000bb27cf98)  [00|00|   54]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 45  (0x00000000bb27cfb8)  [00|00|   55]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 46  (0x00000000bb27cfd8)  [00|00|   56]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 47  (0x00000000bb27cff8)  [00|b8|   57]
+                 [   0x00000000bb279f68]
+                 [   0x0000000000000000]
+                 [   0x0000000070400003]
+                 -------------
+ 48  (0x00000000bb27d018)  [00|00|   58]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 49  (0x00000000bb27d038)  [b6|00|   60]
+                 [   0x0000000000000000]
+                 [   0x00000000bb1bddf0]
+                 [   0x0000000000500001]
+                 -------------
+ 50  (0x00000000bb27d058)  [b6|00|   61]
+                 [   0x0000000000000000]
+                 [   0x00000000bb1bdfe0]
+                 [   0x0000000070500001]
+                 -------------
+ 51  (0x00000000bb27d078)  [00|00|   63]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 52  (0x00000000bb27d098)  [00|00|   64]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 53  (0x00000000bb27d0b8)  [00|00|   65]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 54  (0x00000000bb27d0d8)  [00|00|   67]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 55  (0x00000000bb27d0f8)  [00|00|   68]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 56  (0x00000000bb27d118)  [00|00|   71]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 57  (0x00000000bb27d138)  [00|00|   73]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 58  (0x00000000bb27d158)  [00|00|   74]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 59  (0x00000000bb27d178)  [00|00|   75]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 [   0x0000000000000000]
+                 -------------
+ 60  (0x00000000bb27d198)  [00|b7|   77]
+                 [   0x00000000baf05198]
+                 [   0x0000000000000000]
+                 [   0xffffffff80000002]
+                 -------------
+ 61  (0x00000000bb27d1b8)  [00|b7|   78]
+                 [   0x00000000bb27da50]
+                 [   0x0000000000000000]
+                 [   0xffffffff80000002]
+                 -------------
+R15=0x00000000c0b1c128 is an oop
+com.android.dx.rop.code.RegisterSpec 
+ - klass: 'com/android/dx/rop/code/RegisterSpec'
+
+
+Stack: [0x0000000006090000,0x0000000006190000],  sp=0x000000000618f4c0,  free space=1021k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0xee0af]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x000000000a55f000 JavaThread "pool-1-thread-4" [_thread_blocked, id=8684, stack(0x000000000b130000,0x000000000b230000)]
+  0x000000000a55e000 JavaThread "pool-1-thread-3" [_thread_blocked, id=7528, stack(0x000000000af30000,0x000000000b030000)]
+  0x000000000a55d800 JavaThread "pool-1-thread-2" [_thread_blocked, id=5668, stack(0x000000000ad30000,0x000000000ae30000)]
+  0x000000000a513800 JavaThread "pool-2-thread-1" [_thread_blocked, id=8624, stack(0x000000000ab60000,0x000000000ac60000)]
+  0x000000000a3a1800 JavaThread "pool-1-thread-1" [_thread_blocked, id=8356, stack(0x000000000a9e0000,0x000000000aae0000)]
+  0x0000000008849800 JavaThread "Service Thread" daemon [_thread_blocked, id=6880, stack(0x000000000a1d0000,0x000000000a2d0000)]
+  0x0000000008845800 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=8952, stack(0x0000000009c80000,0x0000000009d80000)]
+  0x0000000008843800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=9004, stack(0x0000000009fd0000,0x000000000a0d0000)]
+  0x0000000008842800 JavaThread "Attach Listener" daemon [_thread_blocked, id=1124, stack(0x00000000098f0000,0x00000000099f0000)]
+  0x000000000883b800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=8472, stack(0x0000000009d90000,0x0000000009e90000)]
+  0x00000000087cf800 JavaThread "Finalizer" daemon [_thread_blocked, id=8060, stack(0x0000000009b70000,0x0000000009c70000)]
+  0x00000000087cc000 JavaThread "Reference Handler" daemon [_thread_blocked, id=3708, stack(0x0000000009a70000,0x0000000009b70000)]
+  0x00000000024ff000 JavaThread "main" [_thread_blocked, id=7660, stack(0x0000000002730000,0x0000000002830000)]
+
+Other Threads:
+  0x00000000087c8800 VMThread [stack: 0x00000000097c0000,0x00000000098c0000] [id=8224]
+  0x000000000a2e0800 WatcherThread [stack: 0x000000000a700000,0x000000000a800000] [id=8844]
+
+=>0x00000000023b3000 (exited) GCTaskThread [stack: 0x0000000006090000,0x0000000006190000] [id=8884]
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00000000024fd480] Threads_lock - owner thread: 0x00000000087c8800
+[0x00000000024fd980] Heap_lock - owner thread: 0x00000000024ff000
+
+Heap
+ PSYoungGen      total 145920K, used 17402K [0x00000000eaa80000, 0x00000000fdd80000, 0x0000000100000000)
+  eden space 128512K, 0% used [0x00000000eaa80000,0x00000000eaa80000,0x00000000f2800000)
+  from space 17408K, 99% used [0x00000000f2800000,0x00000000f38fe9e0,0x00000000f3900000)
+  to   space 28672K, 0% used [0x00000000fc180000,0x00000000fc180000,0x00000000fdd80000)
+ ParOldGen       total 42496K, used 37256K [0x00000000c0000000, 0x00000000c2980000, 0x00000000eaa80000)
+  object space 42496K, 87% used [0x00000000c0000000,0x00000000c24622c0,0x00000000c2980000)
+ PSPermGen       total 21504K, used 6078K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 28% used [0x00000000bae00000,0x00000000bb3ef830,0x00000000bc300000)
+
+Card table byte_map: [0x0000000005830000,0x0000000005a60000] byte_map_base: 0x0000000005259000
+
+Polling page: 0x0000000000230000
+
+Code Cache  [0x0000000002830000, 0x0000000002af0000, 0x0000000005830000)
+ total_blobs=899 nmethods=660 adapters=191 free_code_cache=46771Kb largest_free_block=47491200
+
+Compilation events (10 events):
+Event: 15.165 Thread 0x0000000008845800  682             com.android.dx.rop.code.RegisterSpecSet::<init> (27 bytes)
+Event: 15.166 Thread 0x0000000008845800 nmethod 682 0x0000000002a58d50 code [0x0000000002a58ea0, 0x0000000002a58fb8]
+Event: 15.219 Thread 0x0000000008845800  683             com.android.dx.rop.cst.CstKnownNull::getType (4 bytes)
+Event: 15.219 Thread 0x0000000008845800 nmethod 683 0x0000000002a11710 code [0x0000000002a11840, 0x0000000002a11898]
+Event: 15.219 Thread 0x0000000008845800  684             com.android.dx.rop.cst.CstInteger::make (47 bytes)
+Event: 15.221 Thread 0x0000000008845800 nmethod 684 0x0000000002a11390 code [0x0000000002a114e0, 0x0000000002a11658]
+Event: 15.227 Thread 0x0000000008845800  685             com.android.dx.ssa.PhiInsn::predBlockIndexForSourcesIndex (15 bytes)
+Event: 15.228 Thread 0x0000000008845800 nmethod 685 0x00000000028fb790 code [0x00000000028fb8e0, 0x00000000028fb9b8]
+Event: 15.262 Thread 0x0000000008845800  686             com.android.dx.ssa.back.FirstFitLocalCombiningAllocator::findNextUnreservedRopReg (68 bytes)
+Event: 15.267 Thread 0x0000000008845800 nmethod 686 0x0000000002a0e5d0 code [0x0000000002a0e760, 0x0000000002a0eb68]
+
+GC Heap History (10 events):
+Event: 4.551 GC heap after
+Heap after GC invocations=3 (full 0):
+ PSYoungGen      total 35328K, used 2552K [0x00000000eaa80000, 0x00000000eef80000, 0x0000000100000000)
+  eden space 32768K, 0% used [0x00000000eaa80000,0x00000000eaa80000,0x00000000eca80000)
+  from space 2560K, 99% used [0x00000000eca80000,0x00000000eccfe1e8,0x00000000ecd00000)
+  to   space 2560K, 0% used [0x00000000eed00000,0x00000000eed00000,0x00000000eef80000)
+ ParOldGen       total 42496K, used 6885K [0x00000000c0000000, 0x00000000c2980000, 0x00000000eaa80000)
+  object space 42496K, 16% used [0x00000000c0000000,0x00000000c06b9510,0x00000000c2980000)
+ PSPermGen       total 21504K, used 5888K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 27% used [0x00000000bae00000,0x00000000bb3c0210,0x00000000bc300000)
+}
+Event: 6.113 GC heap before
+{Heap before GC invocations=4 (full 0):
+ PSYoungGen      total 35328K, used 35320K [0x00000000eaa80000, 0x00000000eef80000, 0x0000000100000000)
+  eden space 32768K, 100% used [0x00000000eaa80000,0x00000000eca80000,0x00000000eca80000)
+  from space 2560K, 99% used [0x00000000eca80000,0x00000000eccfe1e8,0x00000000ecd00000)
+  to   space 2560K, 0% used [0x00000000eed00000,0x00000000eed00000,0x00000000eef80000)
+ ParOldGen       total 42496K, used 6885K [0x00000000c0000000, 0x00000000c2980000, 0x00000000eaa80000)
+  object space 42496K, 16% used [0x00000000c0000000,0x00000000c06b9510,0x00000000c2980000)
+ PSPermGen       total 21504K, used 5924K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 27% used [0x00000000bae00000,0x00000000bb3c9068,0x00000000bc300000)
+Event: 6.238 GC heap after
+Heap after GC invocations=4 (full 0):
+ PSYoungGen      total 68096K, used 2547K [0x00000000eaa80000, 0x00000000eef80000, 0x0000000100000000)
+  eden space 65536K, 0% used [0x00000000eaa80000,0x00000000eaa80000,0x00000000eea80000)
+  from space 2560K, 99% used [0x00000000eed00000,0x00000000eef7cd28,0x00000000eef80000)
+  to   space 2560K, 0% used [0x00000000eea80000,0x00000000eea80000,0x00000000eed00000)
+ ParOldGen       total 42496K, used 11274K [0x00000000c0000000, 0x00000000c2980000, 0x00000000eaa80000)
+  object space 42496K, 26% used [0x00000000c0000000,0x00000000c0b02880,0x00000000c2980000)
+ PSPermGen       total 21504K, used 5924K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 27% used [0x00000000bae00000,0x00000000bb3c9068,0x00000000bc300000)
+}
+Event: 9.343 GC heap before
+{Heap before GC invocations=5 (full 0):
+ PSYoungGen      total 68096K, used 68083K [0x00000000eaa80000, 0x00000000eef80000, 0x0000000100000000)
+  eden space 65536K, 100% used [0x00000000eaa80000,0x00000000eea80000,0x00000000eea80000)
+  from space 2560K, 99% used [0x00000000eed00000,0x00000000eef7cd28,0x00000000eef80000)
+  to   space 2560K, 0% used [0x00000000eea80000,0x00000000eea80000,0x00000000eed00000)
+ ParOldGen       total 42496K, used 11274K [0x00000000c0000000, 0x00000000c2980000, 0x00000000eaa80000)
+  object space 42496K, 26% used [0x00000000c0000000,0x00000000c0b02880,0x00000000c2980000)
+ PSPermGen       total 21504K, used 5967K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 27% used [0x00000000bae00000,0x00000000bb3d3f48,0x00000000bc300000)
+Event: 9.500 GC heap after
+Heap after GC invocations=5 (full 0):
+ PSYoungGen      total 68096K, used 2530K [0x00000000eaa80000, 0x00000000f4780000, 0x0000000100000000)
+  eden space 65536K, 0% used [0x00000000eaa80000,0x00000000eaa80000,0x00000000eea80000)
+  from space 2560K, 98% used [0x00000000eea80000,0x00000000eecf8868,0x00000000eed00000)
+  to   space 14848K, 0% used [0x00000000f3900000,0x00000000f3900000,0x00000000f4780000)
+ ParOldGen       total 42496K, used 22185K [0x00000000c0000000, 0x00000000c2980000, 0x00000000eaa80000)
+  object space 42496K, 52% used [0x00000000c0000000,0x00000000c15aa680,0x00000000c2980000)
+ PSPermGen       total 21504K, used 5967K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 27% used [0x00000000bae00000,0x00000000bb3d3f48,0x00000000bc300000)
+}
+Event: 12.715 GC heap before
+{Heap before GC invocations=6 (full 0):
+ PSYoungGen      total 68096K, used 68066K [0x00000000eaa80000, 0x00000000f4780000, 0x0000000100000000)
+  eden space 65536K, 100% used [0x00000000eaa80000,0x00000000eea80000,0x00000000eea80000)
+  from space 2560K, 98% used [0x00000000eea80000,0x00000000eecf8868,0x00000000eed00000)
+  to   space 14848K, 0% used [0x00000000f3900000,0x00000000f3900000,0x00000000f4780000)
+ ParOldGen       total 42496K, used 22185K [0x00000000c0000000, 0x00000000c2980000, 0x00000000eaa80000)
+  object space 42496K, 52% used [0x00000000c0000000,0x00000000c15aa680,0x00000000c2980000)
+ PSPermGen       total 21504K, used 6010K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 27% used [0x00000000bae00000,0x00000000bb3de9a0,0x00000000bc300000)
+Event: 12.758 GC heap after
+Heap after GC invocations=6 (full 0):
+ PSYoungGen      total 143360K, used 13571K [0x00000000eaa80000, 0x00000000f4c80000, 0x0000000100000000)
+  eden space 128512K, 0% used [0x00000000eaa80000,0x00000000eaa80000,0x00000000f2800000)
+  from space 14848K, 91% used [0x00000000f3900000,0x00000000f4640d38,0x00000000f4780000)
+  to   space 17408K, 0% used [0x00000000f2800000,0x00000000f2800000,0x00000000f3900000)
+ ParOldGen       total 42496K, used 22185K [0x00000000c0000000, 0x00000000c2980000, 0x00000000eaa80000)
+  object space 42496K, 52% used [0x00000000c0000000,0x00000000c15aa680,0x00000000c2980000)
+ PSPermGen       total 21504K, used 6010K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 27% used [0x00000000bae00000,0x00000000bb3de9a0,0x00000000bc300000)
+}
+Event: 15.417 GC heap before
+{Heap before GC invocations=7 (full 0):
+ PSYoungGen      total 143360K, used 142083K [0x00000000eaa80000, 0x00000000f4c80000, 0x0000000100000000)
+  eden space 128512K, 100% used [0x00000000eaa80000,0x00000000f2800000,0x00000000f2800000)
+  from space 14848K, 91% used [0x00000000f3900000,0x00000000f4640d38,0x00000000f4780000)
+  to   space 17408K, 0% used [0x00000000f2800000,0x00000000f2800000,0x00000000f3900000)
+ ParOldGen       total 42496K, used 22185K [0x00000000c0000000, 0x00000000c2980000, 0x00000000eaa80000)
+  object space 42496K, 52% used [0x00000000c0000000,0x00000000c15aa680,0x00000000c2980000)
+ PSPermGen       total 21504K, used 6078K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 28% used [0x00000000bae00000,0x00000000bb3ef830,0x00000000bc300000)
+Event: 15.787 GC heap after
+Heap after GC invocations=7 (full 0):
+ PSYoungGen      total 145920K, used 17402K [0x00000000eaa80000, 0x00000000fdd80000, 0x0000000100000000)
+  eden space 128512K, 0% used [0x00000000eaa80000,0x00000000eaa80000,0x00000000f2800000)
+  from space 17408K, 99% used [0x00000000f2800000,0x00000000f38fe9e0,0x00000000f3900000)
+  to   space 28672K, 0% used [0x00000000fc180000,0x00000000fc180000,0x00000000fdd80000)
+ ParOldGen       total 42496K, used 37256K [0x00000000c0000000, 0x00000000c2980000, 0x00000000eaa80000)
+  object space 42496K, 87% used [0x00000000c0000000,0x00000000c24622c0,0x00000000c2980000)
+ PSPermGen       total 21504K, used 6078K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 28% used [0x00000000bae00000,0x00000000bb3ef830,0x00000000bc300000)
+}
+Event: 15.787 GC heap before
+{Heap before GC invocations=8 (full 1):
+ PSYoungGen      total 145920K, used 17402K [0x00000000eaa80000, 0x00000000fdd80000, 0x0000000100000000)
+  eden space 128512K, 0% used [0x00000000eaa80000,0x00000000eaa80000,0x00000000f2800000)
+  from space 17408K, 99% used [0x00000000f2800000,0x00000000f38fe9e0,0x00000000f3900000)
+  to   space 28672K, 0% used [0x00000000fc180000,0x00000000fc180000,0x00000000fdd80000)
+ ParOldGen       total 42496K, used 37256K [0x00000000c0000000, 0x00000000c2980000, 0x00000000eaa80000)
+  object space 42496K, 87% used [0x00000000c0000000,0x00000000c24622c0,0x00000000c2980000)
+ PSPermGen       total 21504K, used 6078K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 28% used [0x00000000bae00000,0x00000000bb3ef830,0x00000000bc300000)
+
+Deoptimization events (10 events):
+Event: 14.575 Thread 0x000000000a55d800 Uncommon trap: reason=unreached action=reinterpret pc=0x000000000297ccac method=com.android.dx.ssa.MoveParamCombiner$1.visitNonMoveInsn(Lcom/android/dx/ssa/NormalSsaInsn;)V @ 27
+Event: 14.901 Thread 0x000000000a3a1800 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x0000000002986fa4 method=com.android.dx.ssa.LiteralOpUpgrader.tryReplacingWithConstant(Lcom/android/dx/ssa/NormalSsaInsn;)Z @ 62
+Event: 14.901 Thread 0x000000000a3a1800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00000000028c5cec method=com.android.dx.ssa.back.FirstFitLocalCombiningAllocator.findNextUnreservedRopReg(IILcom/android/dx/ssa/back/FirstFitLocalCombiningAllocator$Alignment;)I @ 60
+Event: 14.902 Thread 0x000000000a3a1800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00000000028c5cec method=com.android.dx.ssa.back.FirstFitLocalCombiningAllocator.findNextUnreservedRopReg(IILcom/android/dx/ssa/back/FirstFitLocalCombiningAllocator$Alignment;)I @ 60
+Event: 14.902 Thread 0x000000000a3a1800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00000000028c5cec method=com.android.dx.ssa.back.FirstFitLocalCombiningAllocator.findNextUnreservedRopReg(IILcom/android/dx/ssa/back/FirstFitLocalCombiningAllocator$Alignment;)I @ 60
+Event: 14.902 Thread 0x000000000a3a1800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00000000028c5cec method=com.android.dx.ssa.back.FirstFitLocalCombiningAllocator.findNextUnreservedRopReg(IILcom/android/dx/ssa/back/FirstFitLocalCombiningAllocator$Alignment;)I @ 60
+Event: 14.908 Thread 0x000000000a3a1800 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x0000000002986fa4 method=com.android.dx.ssa.LiteralOpUpgrader.tryReplacingWithConstant(Lcom/android/dx/ssa/NormalSsaInsn;)Z @ 62
+Event: 15.060 Thread 0x000000000a55e000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x0000000002ad8428 method=com.android.dx.cf.code.BytecodeArray.parseInstruction(ILcom/android/dx/cf/code/BytecodeArray$Visitor;)I @ 971
+Event: 15.060 Thread 0x000000000a55e000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x0000000002ad8428 method=com.android.dx.cf.code.BytecodeArray.parseInstruction(ILcom/android/dx/cf/code/BytecodeArray$Visitor;)I @ 971
+Event: 15.060 Thread 0x000000000a55e000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00000000029dfe8c method=com.android.dx.cf.code.Ropper.processBlock(Lcom/android/dx/cf/code/ByteBlock;Lcom/android/dx/cf/code/Frame;[I)V @ 777
+
+Internal exceptions (10 events):
+Event: 1.974 Thread 0x000000000a55d800 Threw 0x00000000eabc75a0 at C:\re\jdk7u55\869\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 3.931 Thread 0x000000000a55f000 Implicit null exception at 0x00000000028c93d2 to 0x00000000028c94d5
+Event: 4.195 Thread 0x000000000a55e000 Threw 0x00000000eaacf2f8 at C:\re\jdk7u55\869\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 6.648 Thread 0x000000000a3a1800 Threw 0x00000000ead39710 at C:\re\jdk7u55\869\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 6.929 Thread 0x00000000024ff000 Threw 0x00000000eabe90c0 at C:\re\jdk7u55\869\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 7.026 Thread 0x000000000a3a1800 Threw 0x00000000eb74dd68 at C:\re\jdk7u55\869\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 11.991 Thread 0x00000000024ff000 Threw 0x00000000ed1ba9d0 at C:\re\jdk7u55\869\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 12.634 Thread 0x000000000a55e000 Implicit null exception at 0x0000000002a8a8fc to 0x0000000002a8abfd
+Event: 12.634 Thread 0x000000000a55e000 Implicit null exception at 0x000000000293d728 to 0x000000000293da15
+Event: 12.658 Thread 0x000000000a55f000 Implicit null exception at 0x0000000002920a9c to 0x0000000002920bf9
+
+Events (10 events):
+Event: 15.060 Thread 0x000000000a55e000 Uncommon trap: trap_request=0xffffffc6 fr.pc=0x0000000002ad8428
+Event: 15.060 Thread 0x000000000a55e000 DEOPT PACKING pc=0x0000000002ad8428 sp=0x000000000b02e8e0
+Event: 15.060 Thread 0x000000000a55e000 DEOPT UNPACKING pc=0x00000000028675a4 sp=0x000000000b02e878 mode 2
+Event: 15.060 Thread 0x000000000a55e000 Uncommon trap: trap_request=0xffffffc6 fr.pc=0x0000000002ad8428
+Event: 15.060 Thread 0x000000000a55e000 DEOPT PACKING pc=0x0000000002ad8428 sp=0x000000000b02e990
+Event: 15.060 Thread 0x000000000a55e000 DEOPT UNPACKING pc=0x00000000028675a4 sp=0x000000000b02e928 mode 2
+Event: 15.060 Thread 0x000000000a55e000 Uncommon trap: trap_request=0xffffffde fr.pc=0x00000000029dfe8c
+Event: 15.060 Thread 0x000000000a55e000 DEOPT PACKING pc=0x00000000029dfe8c sp=0x000000000b02eb70
+Event: 15.060 Thread 0x000000000a55e000 DEOPT UNPACKING pc=0x00000000028675a4 sp=0x000000000b02ead8 mode 2
+Event: 15.416 Executing VM operation: ParallelGCFailedAllocation
+
+
+Dynamic libraries:
+0x000000013fca0000 - 0x000000013fcd3000 	D:\Program Files\Java\jdk1.7.0_55\bin\java.exe
+0x0000000076f90000 - 0x000000007713a000 	C:\windows\SYSTEM32\ntdll.dll
+0x0000000076c30000 - 0x0000000076d4f000 	C:\windows\system32\kernel32.dll
+0x000007fefcb60000 - 0x000007fefcbcb000 	C:\windows\system32\KERNELBASE.dll
+0x000007fefd3d0000 - 0x000007fefd4ab000 	C:\windows\system32\ADVAPI32.dll
+0x000007feff160000 - 0x000007feff1ff000 	C:\windows\system32\msvcrt.dll
+0x000007fefd5b0000 - 0x000007fefd5cf000 	C:\windows\SYSTEM32\sechost.dll
+0x000007feff030000 - 0x000007feff15d000 	C:\windows\system32\RPCRT4.dll
+0x0000000076e90000 - 0x0000000076f8a000 	C:\windows\system32\USER32.dll
+0x000007fefdde0000 - 0x000007fefde47000 	C:\windows\system32\GDI32.dll
+0x000007fefd4b0000 - 0x000007fefd4be000 	C:\windows\system32\LPK.dll
+0x000007fefd7c0000 - 0x000007fefd88a000 	C:\windows\system32\USP10.dll
+0x000007fefb4f0000 - 0x000007fefb6e4000 	C:\windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.18837_none_fa3b1e3d17594757\COMCTL32.dll
+0x000007fefdd00000 - 0x000007fefdd71000 	C:\windows\system32\SHLWAPI.dll
+0x000007fefd4c0000 - 0x000007fefd4ee000 	C:\windows\system32\IMM32.DLL
+0x000007fefd6b0000 - 0x000007fefd7b9000 	C:\windows\system32\MSCTF.dll
+0x000007fefc9e0000 - 0x000007fefca0f000 	C:\windows\system32\nvinitx.dll
+0x000000000f000000 - 0x000000000f006000 	C:\Program Files\NVIDIA Corporation\CoProcManager\detoured.dll
+0x000007fef9e40000 - 0x000007fef9e73000 	C:\Program Files\NVIDIA Corporation\CoProcManager\nvd3d9wrapx.dll
+0x000007fefdb20000 - 0x000007fefdcf7000 	C:\windows\system32\SETUPAPI.dll
+0x000007fefce90000 - 0x000007fefcec6000 	C:\windows\system32\CFGMGR32.dll
+0x000007fefd5d0000 - 0x000007fefd6a8000 	C:\windows\system32\OLEAUT32.dll
+0x000007fefcf40000 - 0x000007fefd143000 	C:\windows\system32\ole32.dll
+0x000007fefcd00000 - 0x000007fefcd1a000 	C:\windows\system32\DEVOBJ.dll
+0x000007fef9e10000 - 0x000007fef9e33000 	C:\Program Files\NVIDIA Corporation\CoProcManager\nvdxgiwrapx.dll
+0x0000000068700000 - 0x00000000687d2000 	D:\Program Files\Java\jdk1.7.0_55\jre\bin\msvcr100.dll
+0x0000000064840000 - 0x0000000065009000 	D:\Program Files\Java\jdk1.7.0_55\jre\bin\server\jvm.dll
+0x000007fef5ec0000 - 0x000007fef5ec9000 	C:\windows\system32\WSOCK32.dll
+0x000007fefd380000 - 0x000007fefd3cd000 	C:\windows\system32\WS2_32.dll
+0x000007fefd4f0000 - 0x000007fefd4f8000 	C:\windows\system32\NSI.dll
+0x000007fefcc90000 - 0x000007fefcccb000 	C:\windows\system32\WINMM.dll
+0x0000000077150000 - 0x0000000077157000 	C:\windows\system32\PSAPI.DLL
+0x000000006ad60000 - 0x000000006ad6f000 	D:\Program Files\Java\jdk1.7.0_55\jre\bin\verify.dll
+0x000000006ab10000 - 0x000000006ab38000 	D:\Program Files\Java\jdk1.7.0_55\jre\bin\java.dll
+0x000000006ad40000 - 0x000000006ad55000 	D:\Program Files\Java\jdk1.7.0_55\jre\bin\zip.dll
+0x000000006aa80000 - 0x000000006aa99000 	D:\Program Files\Java\jdk1.7.0_55\jre\bin\net.dll
+0x000007fefc250000 - 0x000007fefc2a5000 	C:\windows\system32\mswsock.dll
+0x000007fefc240000 - 0x000007fefc247000 	C:\windows\System32\wship6.dll
+0x000000006aa60000 - 0x000000006aa71000 	D:\Program Files\Java\jdk1.7.0_55\jre\bin\nio.dll
+0x000007feef340000 - 0x000007feef465000 	C:\windows\system32\dbghelp.dll
+
+VM Arguments:
+jvm_args: -Djava.awt.headless=true -Xmx1024M -Dfile.encoding=GBK -Duser.country=CN -Duser.language=zh -Duser.variant 
+java_command: com.android.dx.command.Main --dex --num-threads=4 --output E:\AndroidStudioProjectCode\StrongBoxApp\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.2.0_c079f5f9f59eb5fa1c9c2ba2ae33270a0908c527.jar E:\AndroidStudioProjectCode\StrongBoxApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\classes.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=D:\Program Files\Java\jdk1.7.0_55
+PATH=C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\Java\jdk1.7.0_55\bin;D:\Program Files\TortoiseSVN\bin;D:\Program Files\Cygwin\bin;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;D:\Program Files\apache-tomcat-7.0.53\bin;D:\Program Files\nodejs\;D:\Program Files\apache-ant-1.9.6\bin;D:\AndroidSDK\platform-tools;D:\AndroidSDK\tools;D:\Program Files\nodejs\node_global;D:\Program Files (x86)\MinGW\bin;D:\Program Files (x86)\CMake\bin;C:\Users\Administrator\AppData\Roaming\npm
+USERNAME=HTT
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 Service Pack 1
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 60 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, erms, ht, tsc, tscinvbit
+
+Memory: 4k page, physical 4075668k(319316k free), swap 7192308k(558556k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (24.55-b03) for windows-amd64 JRE (1.7.0_55-b13), built on Mar 17 2014 19:45:30 by "java_re" with unknown MS VC++:1600
+
+time: Thu Mar 31 21:38:00 2016
+elapsed time: 16 seconds
+

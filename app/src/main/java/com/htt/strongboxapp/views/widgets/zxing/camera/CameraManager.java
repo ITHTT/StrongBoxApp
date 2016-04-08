@@ -17,6 +17,7 @@
 package com.htt.strongboxapp.views.widgets.zxing.camera;
 
 import java.io.IOException;
+import java.util.List;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
@@ -25,6 +26,7 @@ import android.graphics.Rect;
 import android.hardware.Camera;
 import android.os.Build;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
@@ -130,12 +132,12 @@ public final class CameraManager {
       configManager.setDesiredCameraParameters(camera);
 
       //FIXME
- //     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-      //�Ƿ�ʹ��ǰ��
+      //     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+      //是否使用前灯
 //      if (prefs.getBoolean(PreferencesActivity.KEY_FRONT_LIGHT, false)) {
 //        FlashlightManager.enableFlashlight();
 //      }
-      FlashlightManager.enableFlashlight();
+      FlashlightManager.disableFlashlight();
     }
   }
 
@@ -216,26 +218,30 @@ public final class CameraManager {
    * @return The rectangle to draw on screen in window coordinates.
    */
   public Rect getFramingRect() {
-    Point screenResolution = configManager.getScreenResolution();
     if (framingRect == null) {
       if (camera == null) {
         return null;
       }
-      int width = screenResolution.x * 3 / 4;
-      if (width < MIN_FRAME_WIDTH) {
-        width = MIN_FRAME_WIDTH;
-      } else if (width > MAX_FRAME_WIDTH) {
-        width = MAX_FRAME_WIDTH;
+      Point screenResolution = configManager.getScreenResolution();
+      if (screenResolution == null) {
+        // Called early, before init even finished
+        return null;
       }
-      int height = screenResolution.y * 3 / 4;
-      if (height < MIN_FRAME_HEIGHT) {
-        height = MIN_FRAME_HEIGHT;
-      } else if (height > MAX_FRAME_HEIGHT) {
-        height = MAX_FRAME_HEIGHT;
-      }
+
+      // int width = findDesiredDimensionInRange(screenResolution.x,
+      // MIN_FRAME_WIDTH, MAX_FRAME_WIDTH);
+      // int height = findDesiredDimensionInRange(screenResolution.y,
+      // MIN_FRAME_HEIGHT, MAX_FRAME_HEIGHT);
+
+            /* 扫描框修改 */
+      DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+      int width = (int) (metrics.widthPixels * 0.8);
+      int height = (int) (width * 1.0);
+
       int leftOffset = (screenResolution.x - width) / 2;
-      int topOffset = (screenResolution.y - height) / 2;
-      framingRect = new Rect(leftOffset, topOffset, leftOffset + width, topOffset + height);
+      int topOffset = (screenResolution.y - height) / 4;
+      framingRect = new Rect(leftOffset, topOffset, leftOffset + width,
+              topOffset + height);
       Log.d(TAG, "Calculated framing rect: " + framingRect);
     }
     return framingRect;
@@ -302,25 +308,75 @@ public final class CameraManager {
       // This is the standard Android format which all devices are REQUIRED to support.
       // In theory, it's the only one we should ever care about.
       case PixelFormat.YCbCr_420_SP:
-      // This format has never been seen in the wild, but is compatible as we only care
-      // about the Y channel, so allow it.
+        // This format has never been seen in the wild, but is compatible as we only care
+        // about the Y channel, so allow it.
       case PixelFormat.YCbCr_422_SP:
         return new PlanarYUVLuminanceSource(data, width, height, rect.left, rect.top,
-            rect.width(), rect.height());
+                rect.width(), rect.height());
       default:
         // The Samsung Moment incorrectly uses this variant instead of the 'sp' version.
         // Fortunately, it too has all the Y data up front, so we can read it.
         if ("yuv420p".equals(previewFormatString)) {
           return new PlanarYUVLuminanceSource(data, width, height, rect.left, rect.top,
-            rect.width(), rect.height());
+                  rect.width(), rect.height());
         }
     }
     throw new IllegalArgumentException("Unsupported picture format: " +
-        previewFormat + '/' + previewFormatString);
+            previewFormat + '/' + previewFormatString);
   }
 
-	public Context getContext() {
-		return context;
-	}
+  public Context getContext() {
+    return context;
+  }
+
+  public  void openFlashLight() {
+    if (camera == null) {
+         return;
+      }
+    Camera.Parameters parameters = camera.getParameters();
+    if (parameters == null) {
+         return;
+    }
+    List<String> flashModes = parameters.getSupportedFlashModes();
+    // Check if camera flash exists
+    if (flashModes == null) {
+      // Use the screen as a flashlight (next best thing)
+      return;
+    }
+    String flashMode = parameters.getFlashMode();
+    if (!Camera.Parameters.FLASH_MODE_TORCH.equals(flashMode)) {
+      // Turn on the flash
+      if (flashModes.contains(Camera.Parameters.FLASH_MODE_TORCH)) {
+        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+        camera.setParameters(parameters);
+      } else {
+      }
+    }
+  }
+
+  public void closeFlashLight(){
+      if (camera == null) {
+           return;
+      }
+      Camera.Parameters parameters = camera.getParameters();
+      if (parameters == null) {
+          return;
+      }
+      List<String> flashModes = parameters.getSupportedFlashModes();
+      String flashMode = parameters.getFlashMode();
+      // Check if camera flash exists
+      if (flashModes == null) {
+           return;
+      }
+      if (!Camera.Parameters.FLASH_MODE_OFF.equals(flashMode)) {
+           // Turn off the flash
+        if (flashModes.contains(Camera.Parameters.FLASH_MODE_OFF)) {
+          parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+          camera.setParameters(parameters);
+        } else {
+          Log.e(TAG, "FLASH_MODE_OFF not supported");
+        }
+      }
+  }
 
 }

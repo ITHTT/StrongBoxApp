@@ -54,7 +54,7 @@ final class FlashlightManager {
   }
 
   /**
-   * �����������ƿ���
+   * 控制相机闪光灯开关
    */
   //FIXME
   static void enableFlashlight() {
@@ -146,5 +146,4 @@ final class FlashlightManager {
       invoke(setFlashEnabledMethod, iHardwareService, active);
     }
   }
-
 }

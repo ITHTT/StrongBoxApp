@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,7 +21,7 @@ import static com.htt.strongboxapp.R.color.colorPrimary;
 /**
  * Created by Administrator on 2016/3/21.
  */
-public class TitleBar extends RelativeLayout{
+public class TitleBar extends LinearLayout{
     private Context context;
     private TextView tvTitleBarBack;
     private RoundTextView tvTitleBarMsgTip;
@@ -62,6 +63,10 @@ public class TitleBar extends RelativeLayout{
         if(!TextUtils.isEmpty(title)&&this.tvTitleBarTitle!=null){
             tvTitleBarTitle.setText(title);
         }
+    }
+
+    public void setPaddingTop(int paddingTop){
+        this.setPadding(this.getPaddingLeft(),paddingTop,this.getPaddingRight(),this.getPaddingBottom());
     }
 
     public void setTitleBarLeftOnClickListener(OnClickListener listener){

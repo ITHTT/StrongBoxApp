@@ -31,13 +31,14 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.google.zxing.ResultPoint;
-import com.htt.strongboxapp.R;
-import com.htt.strongboxapp.views.widgets.zxing.camera.CameraManager;
+import com.htt.qrcodeapp.R;
+import com.mining.app.zxing.camera.CameraManager;
 
 /**
  * This view is overlaid on top of the camera preview. It adds the viewfinder
  * rectangle and partial transparency outside it, as well as the laser scanner
  * animation and result points.
+ * 自定义控件，实现扫描框
  * 
  */
 public final class ViewfinderView extends View {
@@ -79,7 +80,7 @@ public final class ViewfinderView extends View {
 	/**
 	 * 字体大小
 	 */
-	private static final int TEXT_SIZE = 16;
+	private static final int TEXT_SIZE = 14;
 	/**
 	 * 字体距离扫描框下面的距离
 	 */
@@ -158,8 +159,6 @@ public final class ViewfinderView extends View {
 				paint);
 		canvas.drawRect(0, frame.bottom + 1, width, height, paint);
 
-
-
 		if (resultBitmap != null) {
 			// Draw the opaque result bitmap over the scanning rectangle
 			paint.setAlpha(OPAQUE);
@@ -193,16 +192,6 @@ public final class ViewfinderView extends View {
 			}
 			canvas.drawRect(frame.left + MIDDLE_LINE_PADDING, slideTop - MIDDLE_LINE_WIDTH/2, frame.right - MIDDLE_LINE_PADDING,slideTop + MIDDLE_LINE_WIDTH/2, paint);
 
-
-			//画扫描框下面的字
-			paint.setColor(Color.WHITE);
-			paint.setTextSize(TEXT_SIZE * density);
-			paint.setAlpha(0x40);
-			paint.setTypeface(Typeface.create("System", Typeface.BOLD));
-			canvas.drawText(getResources().getString(R.string.scan_text), frame.left, (float) (frame.bottom + (float)TEXT_PADDING_TOP *density), paint);
-
-
-
 			Collection<ResultPoint> currentPossible = possibleResultPoints;
 			Collection<ResultPoint> currentLast = lastPossibleResultPoints;
 			if (currentPossible.isEmpty()) {
@@ -226,12 +215,24 @@ public final class ViewfinderView extends View {
 				}
 			}
 
+			drawText(canvas,frame,this.getContext().getResources().getString(R.string.scan_text));
 
 			//只刷新扫描框的内容，其他地方不刷新
 			postInvalidateDelayed(ANIMATION_DELAY, frame.left, frame.top,
 					frame.right, frame.bottom);
-
 		}
+	}
+
+	protected void drawText(Canvas canvas,Rect rect,String text){
+
+		paint.setColor(Color.WHITE);
+		paint.setTextSize(TEXT_SIZE * density);
+		paint.setAlpha(0x40);
+		paint.setTypeface(Typeface.create("System", Typeface.NORMAL));
+		int drawTextWidth=rect.width();
+		float textWidth=paint.getTextSize()*text.length();
+		int paddingLeft=(int)(drawTextWidth-textWidth)/2;
+		canvas.drawText(text,rect.left+paddingLeft,(float) (rect.bottom + (float)TEXT_PADDING_TOP *density), paint);
 	}
 
 	public void drawViewfinder() {
@@ -254,4 +255,5 @@ public final class ViewfinderView extends View {
 	public void addPossibleResultPoint(ResultPoint point) {
 		possibleResultPoints.add(point);
 	}
+
 }

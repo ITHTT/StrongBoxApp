@@ -7,16 +7,19 @@
     <include
         layout="@layout/layout_titlebar"/>
     <com.htt.strongboxapp.views.widgets.gridpasswordview.GridPasswordView
+        android:id="@+id/passwordView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8.0dip"
+        android:layout_marginTop="40.0dip"
         app:inputItemWith="45.0dip"
         app:inputItemHeight="45.0dip"
         app:isEditable="false"
         android:background="@drawable/bg_input_text_default"/>
 
     <com.htt.strongboxapp.views.widgets.keyboardview.KeyboardView
+        android:id="@+id/keyboardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"/>
 </LinearLayout>

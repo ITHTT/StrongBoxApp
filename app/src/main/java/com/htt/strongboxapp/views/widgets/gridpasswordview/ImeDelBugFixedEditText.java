@@ -28,10 +28,10 @@ public class ImeDelBugFixedEditText extends EditText {
         super(context, attrs, defStyle);
     }
 
-    @Override
-    public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
-        return new ZanyInputConnection(super.onCreateInputConnection(outAttrs), true);
-    }
+//    @Override
+//    public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
+//        return new ZanyInputConnection(super.onCreateInputConnection(outAttrs), true);
+//    }
 
     private class ZanyInputConnection extends InputConnectionWrapper {
 

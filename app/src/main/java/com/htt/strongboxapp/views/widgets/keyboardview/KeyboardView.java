@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/3/21.
  */
-public class KeyboardView extends RelativeLayout implements View.OnClickListener {
+public class KeyboardView extends RelativeLayout implements View.OnClickListener{
 
     private Context mContext;
     private KeyboardButtonClickedListener mKeyboardButtonClickedListener;

@@ -30,44 +30,39 @@ import com.htt.strongboxapp.activitys.QRCodeScanActivity;
 
 /**
  * This thread does all the heavy lifting of decoding the images.
- * �����߳�
+ * 二维码扫描处理线程
  */
 final class DecodeThread extends Thread {
-
   public static final String BARCODE_BITMAP = "barcode_bitmap";
   private final QRCodeScanActivity activity;
   private final Hashtable<DecodeHintType, Object> hints;
   private Handler handler;
+  /**扫描处理的同步计数器*/
   private final CountDownLatch handlerInitLatch;
 
   DecodeThread(QRCodeScanActivity activity,
                Vector<BarcodeFormat> decodeFormats,
                String characterSet,
                ResultPointCallback resultPointCallback) {
-
     this.activity = activity;
     handlerInitLatch = new CountDownLatch(1);
-
     hints = new Hashtable<DecodeHintType, Object>(3);
-
     if (decodeFormats == null || decodeFormats.isEmpty()) {
     	 decodeFormats = new Vector<BarcodeFormat>();
     	 decodeFormats.addAll(DecodeFormatManager.ONE_D_FORMATS);
     	 decodeFormats.addAll(DecodeFormatManager.QR_CODE_FORMATS);
     	 decodeFormats.addAll(DecodeFormatManager.DATA_MATRIX_FORMATS);
     }
-    
     hints.put(DecodeHintType.POSSIBLE_FORMATS, decodeFormats);
-
     if (characterSet != null) {
       hints.put(DecodeHintType.CHARACTER_SET, characterSet);
     }
-
     hints.put(DecodeHintType.NEED_RESULT_POINT_CALLBACK, resultPointCallback);
   }
 
   Handler getHandler() {
     try {
+      /**阻塞当前线程,直到计数器的值为0，在此主要用于保证run()方法已经执行，Handler已经创建*/
       handlerInitLatch.await();
     } catch (InterruptedException ie) {
       // continue?

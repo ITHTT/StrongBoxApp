@@ -303,6 +303,10 @@ public class GridPasswordView extends LinearLayout implements PasswordViewInterf
 
     }
 
+    public int getPasswordLength(){
+        return passwordLength;
+    }
+
     @Override
     protected Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();

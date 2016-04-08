@@ -28,9 +28,8 @@ import android.app.Activity;
  * Finishes an activity after a period of inactivity.
  */
 public final class InactivityTimer {
-
   private static final int INACTIVITY_DELAY_SECONDS = 5 * 60;
-
+  /**控制周期性执行扫描处理二维码服务的工具*/
   private final ScheduledExecutorService inactivityTimer =
       Executors.newSingleThreadScheduledExecutor(new DaemonThreadFactory());
   private final Activity activity;

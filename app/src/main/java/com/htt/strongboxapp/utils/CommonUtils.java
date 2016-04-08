@@ -1,6 +1,7 @@
 package com.htt.strongboxapp.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.view.Window;
 import android.view.WindowManager;
@@ -68,6 +69,24 @@ public class CommonUtils {
             }
         }
         return false;
+    }
+
+    public static int  getStatusBarHeight(Context context){
+        int statusBarHeight=0;
+        try {
+            Class clazz=Class.forName("com.android.internal.R$dimen");
+            Object object=clazz.newInstance();
+            Field field=clazz.getField("status_bar_height");
+
+            int id = Integer.parseInt(field.get(object).toString());
+            System.out.println("id="+id);
+            //依据id值获取到状态栏的高度,单位为像素
+            statusBarHeight = context.getResources().getDimensionPixelSize(id);
+            System.out.println("statusBarHeight="+statusBarHeight+"pixel");
+            } catch (Exception e) {
+            // TODO: handle exception
+            }
+        return statusBarHeight;
     }
 
 

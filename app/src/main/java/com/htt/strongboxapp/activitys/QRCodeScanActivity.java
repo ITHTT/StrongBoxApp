@@ -11,51 +11,54 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.htt.strongboxapp.R;
 import com.htt.strongboxapp.views.widgets.zxing.camera.CameraManager;
-import com.htt.strongboxapp.views.widgets.zxing.decoding.CaptureActivityHandler;
 import com.htt.strongboxapp.views.widgets.zxing.decoding.InactivityTimer;
+import com.htt.strongboxapp.views.widgets.zxing.decoding.QRCodeScanActivityHandler;
 import com.htt.strongboxapp.views.widgets.zxing.view.ViewfinderView;
 
 import java.io.IOException;
 import java.util.Vector;
 
 /**
- * Created by HTT on 2016/3/1.
+ * Created by HTT on 2016/3/8.
+ * 二维码识别界面
  */
-public class QRCodeScanActivity extends AppCompatActivity implements SurfaceHolder.Callback {
-    private CaptureActivityHandler handler;
+public class QRCodeScanActivity extends AppCompatActivity implements SurfaceHolder.Callback,CompoundButton.OnCheckedChangeListener{
+    private QRCodeScanActivityHandler handler;
     private ViewfinderView viewfinderView;
     private boolean hasSurface;
     private Vector<BarcodeFormat> decodeFormats;
     private String characterSet;
     private InactivityTimer inactivityTimer;
-    private MediaPlayer mediaPlayer;
-    private boolean playBeep;
-    private static final float BEEP_VOLUME = 0.10f;
-    private boolean vibrate;
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_capture);
-        //ViewUtil.addTopView(getApplicationContext(), this, R.string.scan_card);
+        setContentView(R.layout.activity_qrcode_scan);
         CameraManager.init(getApplication());
         viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
-
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
+
+        CheckBox cbFlashLight=(CheckBox)this.findViewById(R.id.cb_flash);
+        cbFlashLight.setOnCheckedChangeListener(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
+        surfaceView.setKeepScreenOn(true);
         SurfaceHolder surfaceHolder = surfaceView.getHolder();
         if (hasSurface) {
             initCamera(surfaceHolder);
@@ -65,15 +68,6 @@ public class QRCodeScanActivity extends AppCompatActivity implements SurfaceHold
         }
         decodeFormats = null;
         characterSet = null;
-
-        playBeep = true;
-        AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);
-        if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
-            playBeep = false;
-        }
-        initBeepSound();
-        vibrate = true;
-
     }
 
     @Override
@@ -93,13 +87,12 @@ public class QRCodeScanActivity extends AppCompatActivity implements SurfaceHold
     }
 
     /**
-     * 处理扫描结果
+     * 返回二维码识别结果及二维码图片的接口
      * @param result
      * @param barcode
      */
     public void handleDecode(Result result, Bitmap barcode) {
         inactivityTimer.onActivity();
-        playBeepSoundAndVibrate();
         String resultString = result.getText();
         if (resultString.equals("")) {
             Toast.makeText(this, "Scan failed!", Toast.LENGTH_SHORT).show();
@@ -123,8 +116,7 @@ public class QRCodeScanActivity extends AppCompatActivity implements SurfaceHold
             return;
         }
         if (handler == null) {
-            handler = new CaptureActivityHandler(this, decodeFormats,
-                    characterSet);
+            handler = new QRCodeScanActivityHandler(this, decodeFormats,characterSet);
         }
     }
 
@@ -140,7 +132,6 @@ public class QRCodeScanActivity extends AppCompatActivity implements SurfaceHold
             hasSurface = true;
             initCamera(holder);
         }
-
     }
 
     @Override
@@ -162,48 +153,12 @@ public class QRCodeScanActivity extends AppCompatActivity implements SurfaceHold
 
     }
 
-    private void initBeepSound() {
-        if (playBeep && mediaPlayer == null) {
-            // The volume on STREAM_SYSTEM is not adjustable, and users found it
-            // too loud,
-            // so we now play on the music stream.
-            setVolumeControlStream(AudioManager.STREAM_MUSIC);
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mediaPlayer.setOnCompletionListener(beepListener);
-
-            AssetFileDescriptor file = getResources().openRawResourceFd(
-                    R.raw.beep);
-            try {
-                mediaPlayer.setDataSource(file.getFileDescriptor(),
-                        file.getStartOffset(), file.getLength());
-                file.close();
-                mediaPlayer.setVolume(BEEP_VOLUME, BEEP_VOLUME);
-                mediaPlayer.prepare();
-            } catch (IOException e) {
-                mediaPlayer = null;
-            }
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if(isChecked){
+            CameraManager.get().openFlashLight();
+        }else{
+            CameraManager.get().closeFlashLight();
         }
     }
-
-    private static final long VIBRATE_DURATION = 200L;
-
-    private void playBeepSoundAndVibrate() {
-        if (playBeep && mediaPlayer != null) {
-            mediaPlayer.start();
-        }
-        if (vibrate) {
-            Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-            vibrator.vibrate(VIBRATE_DURATION);
-        }
-    }
-
-    /**
-     * When the beep has finished playing, rewind to queue up another one.
-     */
-    private final MediaPlayer.OnCompletionListener beepListener = new MediaPlayer.OnCompletionListener() {
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            mediaPlayer.seekTo(0);
-        }
-    };
 }
